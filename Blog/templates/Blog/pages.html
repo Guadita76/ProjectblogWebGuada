@@ -1,0 +1,80 @@
+
+{% extends 'Blog/base.html' %}
+{% load humanize %}
+{% block content %}
+{% load static %}
+
+{% if posts %}  
+    
+  {% for post in posts %}
+    
+
+    <article>
+       
+          <div class= "mains" >
+            <figure class= "Article__picture">
+            <img src=   "{{post.image.url}}" >
+            </figure>
+            <div class= "Article__content">
+            <h2 class= "username"><a href="{% url  'profile' post.user %}">@{{post.user.username}}</a></h2>
+            <h2> Post By: {{post.user.first_name}}  {{post.user.last_name}}</h2>
+            <i class="clock"></i>
+            <time class= "Article__date" data-time= "#">{{post.timestamp }}</time>
+            <h2 class= "Article__title"> {{post.title}}</h2>
+            <br>
+            <h2 class= "sub_title"> {{post.sub_title}}</h2>
+            <br>
+            <button><a class= "" id= "submit" href= "{% url 'postdetail' post.id %}">  Read More</a></button>
+        
+          </div>
+          </article>
+            {% if request.user == post.user %}
+            <div >
+
+              <button><a class= "follow-button" id= "submit" href= "{% url 'post'  %}">  New Post</a></button>
+              <button><a class= "follow-button" href= "{% url 'editPost' post.id %}">  Editar Post</a></button>
+              <button><a class= "follow-button" href= "{% url 'delete' post.id %}">  Eliminar Post</a></button>
+            </div>
+            {% endif %}
+            
+          
+          </div>
+          
+  {% endfor%}
+
+{% else %}
+<br/>
+ 
+       <h1> NO EXISTEN POSTS REGISTRADOS </h1>      
+
+{% endif %}    
+
+
+<br/>
+ 
+     <div class= "container">
+         {% if posts.has_previous %}
+           <div class= "button-back">
+             <p align= 'right'>
+             <button> <a href= "?page= {{posts.previous_page_number}}" class= "follow-button" > Anterior</a></button>
+             </p>
+           </div>
+          {% endif %} 
+      </div>
+   
+
+
+<div class= "container">
+    
+        <div class= "column1">
+            {% if posts.has_next %}
+              <div class= "container">
+                <button><a href= "?page= {{posts.next_page_number}}" class= "follow-button" > Siguiente</a></button>
+              </div>
+              {% endif %} 
+        </div>
+      </div>   
+    
+   
+
+   {% endblock %}

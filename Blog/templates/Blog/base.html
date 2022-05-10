@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Wii Fit</title>
+    <link rel="stylesheet" href="{% static 'Blog/css/styles.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href= "http://fonts.googleapis.com/css?family=Varela+Round" rel='stylesheet' type="text/css">
+	<link rel="stylesheet" type="{% static 'text/css' %}" href=" {% static 'Blog/css/normalize.css' %}"/>
+	
+</head>
+<body>
+    <!-- Header -->
+    <header id="top">
+        <img class="logo" src="{% static 'Blog/imagenes/wii_fit.png' %}" alt="Logotipo">
+            <ul class="list nav disappear">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'pages' %}">Blog</a></li>
+                <li><a href="{% url 'about' %}">About me</a></li>
+                {% if not request.user.is_authenticated %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+                {% if  request.user.is_authenticated %}
+               
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </header>  
+        
+        {% block title%} {% endblock%}
+    <body>   
+
+{% if messages %}
+
+  {% for message in messages %}
+    
+    <div class = "notifications {{message.tags}}">
+    <center>    {{message}} </center>
+    </div>
+    
+   {% endfor%} 
+{% endif %}
+</div>
+</body>
+
+
+{% block content %}
+
+
+{% endblock %}
+
+
+
+
+    
+    <!--footer-->
+    <footer class="container" id= "footer">
+        <!--#1 column-->
+        <div>
+        <a href="#top"><img class= "footer-logo" src="{% static 'Blog/imagenes/wii_fit.png' %}" alt="logo" id="footer-logo"></a>
+        </div>
+        <section class="column" id="column1">
+            <!-- <div>
+                <a href="#top"><img class= "footer-logo" src="./imagenes/wii_fit.png" alt="logo" id="footer-logo"></a>
+                </div>
+            <div id="networks">
+                <a href="https://www.facebook.com/" class="footer-hover"><i class="fa-brands fa-facebook-square fa-lg"></i></a>
+                <a href="https://www.youtube.com/" class="footer-hover"><i class="fa-brands fa-youtube fa-lg"></i></a>
+                <a href="https://www.twitter.com/" class="footer-hover"><i class="fa-brands fa-twitter fa-lg"></i></a>
+                <a href="https://www.pinterest.com/" class="footer-hover"><i class="fa-brands fa-pinterest fa-lg"></i></a>
+                <a href="https://www.instagram.com/" class="footer-hover"><i class="fa-brands fa-instagram fa-lg"></i></a>
+            </div> -->
+        </section>
+        <!--#2 column-->
+        <section id="column2">
+        <ul class="list column footer-list">
+            <li><a href="#" class="footer-menu">Home</a></li>
+            <li><a href="#" class="footer-menu">Blog</a></li>
+            <li><a href="#" class="footer-menu">About me</a></li>
+            <li><a href="#" class="footer-menu">Contact</a></li>
+        </ul>
+        </section>
+        <!--#3 column-->
+       
+            <p id="column3-p">Copyright 2020. All Rights Reserved</p>
+        </section>
+    </footer>
+</body>
+</html>

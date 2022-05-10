@@ -1,0 +1,29 @@
+{% extends 'Blog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Edit Profile Page {% endblock %}
+{% block content %}
+
+
+{% if user.is_authenticated %}
+
+
+<br/>
+<div class= "mains"  >
+<br/>  
+     <form  method= 'POST' enctype= 'multipart/form-data'>  
+       {% csrf_token %}
+       {{form | crispy}}
+      <br/><br/>
+      <button type= "submit" id= "submit" > Update Profile Page</button>
+</div>    
+      
+{% else %}    
+
+You are not allowed here!
+      </form>      
+</div>
+{% endif %}
+{% endblock %}
+
+

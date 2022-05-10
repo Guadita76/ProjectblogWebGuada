@@ -1,0 +1,127 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Wii Fit</title>
+    <link rel="stylesheet" href="{% static 'Blog/css/styles.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href= "http://fonts.googleapis.com/css?family=Varela+Round" rel='stylesheet' type="text/css">
+	<link rel="stylesheet" type="{% static 'Blog/text/css' %}" href=" {% static 'Blog/css/normalize.css' %}"/>
+	
+</head>
+<body>
+    <!-- Header -->
+    <header id="top">
+        <img class="logo" src="{% static 'Blog/imagenes/wii_fit.png' %}" alt="Logotipo">
+            <ul class="list nav disappear">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'pages' %}">Blog</a></li>
+                <li><a href="{% url 'about' %}">About me</a></li>
+                {% if not request.user.is_authenticated %}
+
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+                {% if  request.user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% endif %}
+            </ul>
+        
+            
+        </div>
+    </header>
+    <br/>
+    {% if not request.user.is_authenticated %}
+    <button><a class= "button-back" id= "submit" href= "{% url 'signup'  %}">  Sign Up </a></button>
+    {% endif %}
+    {% if  request.user.is_authenticated %}
+    <button><a class= "follow-button" id= "submit" href= "{% url 'post'  %}">  New Post</a></button>
+    <br/>
+    {% endif %}
+  
+    {% if  request.user.is_authenticated %}
+    
+   
+{% if user.profile.id %}
+
+<button><a class= "follow-button" id= "submit" href= "{% url 'edit_profile_page' user.profile.id %}">  Edit Profile </a></button>
+{%else%}
+<button><a class= "follow-button" id= "submit" href= "{% url 'edit_profile'  %}">  Edit Profile Settings </a></button>
+{%endif%}    
+{%endif%}
+<br/>
+    <div class="main">
+    <br/>
+	<main>
+        <!-- Home -->
+        <section class="container" id="home">
+            <!-- #1 contenedor izquierdo -->
+            <div id="home_left">
+                <h1 class="title" id="home-left-h1">Keep your Body Moving.</h1>
+                <p class="p_black">El Deporte es salud física y mental. Es bienestar emocional. Es seguridad y determinación. Eso es lo que perseguimos. Queremos ayudarte ... </p>
+              
+            </div>
+
+            <!--#2 contenedor derecho img -->
+            <img id="tracker" src="{% static 'Blog/imagenes/undraw_fitness_tracker_3033.svg' %}" alt="grafico">
+        </section>
+        
+        
+
+        <!--Referrals-->
+        <section id="referrals">
+            <h2 class="title" id="referrals-title">About me...</h2>
+            <div class="container">
+             
+                <!--#2 Referral-->
+                <div class="card">
+                    <img src="{% static 'Blog/imagenes/avatar-ali.png' %}" alt="profile_pic" class="img-profile" width= 150 height= 150>
+                    <div class="card-p">
+                        <p class="title card-p-title">Guadalupe Lima</p>
+                        <p class="p_gray card-p-p_gray">“Soy apasionada y activa. Una mujer con iniciativa y dedicación. Soy fuerza y esfuerzo. Soy pasión y ganas de hacer. Soy decidida y, definitivamente, amo lo que hago. ¿Y qué hago? ¡Lo que realmente quiero!”</p>
+                    </div>
+                </div>
+                
+           
+            
+        </section>
+
+        <!--prefooter-->
+        <section id="pre-footer" class="container">
+            
+        </section>
+    </main>
+
+    <!--footer-->
+    <footer class="container" id= "footer">
+        <!--#1 column-->
+        <div>
+        <a href="#top"><img class= "footer-logo" src="{% static 'Blog/imagenes/wii_fit.png' %}" alt="logo" id="footer-logo"></a>
+        </div>
+     
+        <!--#2 column-->
+        <section id="column2">
+        <ul class="list column footer-list">
+            <li><a href="#" class="footer-menu">Home</a></li>
+            <li><a href="{% url 'pages' %}"class="footer-menu">Blog</a></li>
+            <li><a href="#" class="footer-menu">About me</a></li>
+            <li><a href="#" class="footer-menu">Contact</a></li>
+        </ul>
+        </section>
+        <!--#3 column-->
+        <section class="column" id="column3">
+           
+            <p id="column3-p">Copyright 2020. All Rights Reserved</p>
+        </section>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'Blog/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+
+
+
+<div class= "mains"  >
+  <br/>
+  <form class= "form"   method = 'POST'> {% csrf_token %}
+       
+       {{form|crispy}}
+<br/>
+    <button type= "submit" id= "submit" > Update Settings Profile  </button>
+
+  </form>  
+
+{%endif %}
+</div>
+
+{% endblock %}

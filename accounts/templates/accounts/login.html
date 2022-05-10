@@ -1,0 +1,20 @@
+
+{% extends 'Blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  
+
+
+<body>
+  <div class= "mains">
+    <br/>
+  <form class= "form" method= 'POST'>
+       {% csrf_token %}
+       {{form | crispy}}
+<br/><br/>
+    <button type= "submit" id= "submit" > INICIAR SESION  </button>
+
+  </form>
+</div>  
+</body>
+{% endblock %}

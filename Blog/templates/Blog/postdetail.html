@@ -1,0 +1,85 @@
+
+{% extends 'Blog/pages.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+      <article>
+       
+        <div class= "mains" >
+        <br>
+        <h2 class= "Article__title"> {{object.title}}</h2>
+        <h2 class= "sub_title"> {{object.sub_title}}</h2>
+        <br>
+          <figure class= "Article__picture">
+          <img src=   "{{post.image.url}}" >
+          </figure>
+        <br>
+          <p class="Article__paragraph"> {{object.content|safe}}</p>
+          <br>
+          <hr>
+          <br>
+          <div class= "Article__content">
+          <h2 class= "username"><a href="{% url  'profile' post.user %}">@{{post.user.username}}</a></h2>
+          <h2>Post by: {{object.user.first_name}}  {{object.user.last_name}}</h2>
+          <i class="clock"></i>
+          <time class= "Article__date" data-time= "#">{{object.timestamp }}</time>
+         
+        </article>
+<div>
+    <button><a class= "follow-button" href= "{% url 'pages' %}">  Back</a></button>
+</div>
+<br/>
+<hr> 
+<br/>
+<div class= "mains">
+  <img class= "profile" src= "{{ post.user.profile.image.url }}">
+  <h2>@{{post.user.username}}</h2>
+  <h2>{{post.user.first_name}} {{user.last_name}}</h2>
+  <h2>{{post.user.email}}</h2>
+  </h2> <a href= "{{ user.profile.link}} "> Website </h2></a>
+  <h2>{{post.user.profile.bio}}</h2>
+</div>
+<br/>
+
+
+<br/><br/>
+
+    <h1>Comments...</h1>
+    <br/>
+  {% if not post.comments.all %}
+
+      No comments yet...<a href= "{% url 'add_comment' post.pk %}"> 
+        Add One</a>
+  
+  {% else %} 
+  <a href= "{% url 'add_comment' post.pk %}"> Add Comment</a>
+  <br/><br/>
+  <hr>
+      {% for comment in post.comments.all %}
+<hr>
+<br/>
+        <strong>
+           {{ comment.name}} - 
+           {{comment.timestamp}}
+        </strong>
+        <br/>
+        {{comment.content}}
+        <br/><br/>
+        <hr>
+        <hr>
+      {% endfor%}
+
+      <br/>
+      <a href= "{% url 'add_comment' post.pk %}"> Add Comment</a>
+  {% endif %}
+  <br/>
+
+ 
+  
+  
+
+  
+{% endblock %}
+ 
+
+
