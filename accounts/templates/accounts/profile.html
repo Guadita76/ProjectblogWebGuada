@@ -2,10 +2,7 @@
 {% load humanize %}
 {% block content %}
 
-
-
-    
-        
+  
 <div class= "mains">
     <img class= "profile" src= "{{ user.profile.image.url }}" >
     <h2>@{{user.username}}</h2>
@@ -14,9 +11,6 @@
     <a href= "{{ user.profile.link}} "> Website </h2></a>
     <h2>{{user.profile.bio}}</h2>
         
-   
-
-
 </div>
 
 <div class= "follow">
@@ -25,15 +19,8 @@
         <p> {{user.posts.count}}</p>
 
     </div>
-
-
-    
+ 
 </div>
-
-
-
-
-
 
 
 {{ block.super }}

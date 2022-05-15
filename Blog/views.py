@@ -1,3 +1,4 @@
+from msilib.schema import ListView
 from tkinter import PAGES
 from django.shortcuts import get_object_or_404, render, redirect
 from multiprocessing import context
@@ -6,10 +7,8 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from Blog.forms import PostForm, CommentForm
 from Blog.models import Post, Comment
-
 from django.core.paginator import Paginator
-
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, ListView
 
 
 # Create your views here.
@@ -25,9 +24,21 @@ def about_me (request):
    return render (request, 'blog/about_me.html')
 
 
-
-def pages (request):
+# class PostView(ListView):
+#     model= Post
+#     template_name= 'blog/pages.html'
+#     paginate_by= 3
     
+    
+    
+# class EditPostView(DetailView) :  
+#     form_class= PostForm
+#     template_name= 'blog/edit_post.html'
+#     success_url= reverse_lazy('home')
+    
+    
+    
+def post_views (request):
     
     posts= Post.objects.all()
        
@@ -42,7 +53,7 @@ def pages (request):
 
 
 class PostDetailView(DetailView):
-    """Detail post."""
+   
     template_name = 'blog/postdetail.html'
     model = Post
     context_object_name = 'post'

@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href= "http://fonts.googleapis.com/css?family=Varela+Round" rel='stylesheet' type="text/css">
+    <link href= "http://fonts.googleapis.com/css?family=Varela+Round" rel='stylesheet' type="text/css">
 	<link rel="stylesheet" type="{% static 'Blog/text/css' %}" href=" {% static 'Blog/css/normalize.css' %}"/>
 	
 </head>
@@ -23,44 +23,49 @@
     <!-- Header -->
     <header id="top">
         <img class="logo" src="{% static 'Blog/imagenes/wii_fit.png' %}" alt="Logotipo">
+        
             <ul class="list nav disappear">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'pages' %}">Blog</a></li>
-                <li><a href="{% url 'about' %}">About me</a></li>
-                {% if not request.user.is_authenticated %}
 
-                <li><a href="{% url 'login' %}">Login</a></li>
-                {% endif %}
+                {% if  request.user.is_authenticated %}
+                {% if user.profile.id %}
+                <li><a href="#"> Profiles </a>
+                    <ul >
+
+                        <li><a href="{% url 'show_profile' user.profile.id  %}"> My Profile</a></li>
+                        <li><a href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile</a></li>
+                        <li><a  href= "{% url 'edit_user'   %}">  Edit Profile  Settings </a></li>
+                        {%else%}
+                        <li><a href="{% url 'create_profile'   %}">Create Profile</a></li>
+                        {% endif %}
+                        {% endif %}
+                    </ul>
+                 
+                </li>
+                
+                   
                 {% if  request.user.is_authenticated %}
                 <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% endif %}
+                {%else%}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {%endif%}
+                  
+                
             </ul>
-        
-            
-        </div>
-    </header>
-    <br/>
-    {% if not request.user.is_authenticated %}
-    <button><a class= "button-back" id= "submit" href= "{% url 'signup'  %}">  Sign Up </a></button>
-    {% endif %}
-    {% if  request.user.is_authenticated %}
-    <button><a class= "follow-button" id= "submit" href= "{% url 'post'  %}">  New Post</a></button>
-    <br/>
-    {% endif %}
-  
-    {% if  request.user.is_authenticated %}
     
-   
-{% if user.profile.id %}
+         
+    </header>
 
-<button><a class= "follow-button" id= "submit" href= "{% url 'edit_profile_page' user.profile.id %}">  Edit Profile </a></button>
-{%else%}
-<button><a class= "follow-button" id= "submit" href= "{% url 'edit_profile'  %}">  Edit Profile Settings </a></button>
-{%endif%}    
-{%endif%}
-<br/>
+    
+    {% if  request.user.is_authenticated %}
+    <button><a  href= "{% url 'post'  %}">  New Post</a></button>
+    {%else%}
+    <button><a href= "{% url 'signup'  %}">  Sign Up </a></button>
+    {% endif %}
+
+    <br/><br/>
     <div class="main">
-    <br/>
 	<main>
         <!-- Home -->
         <section class="container" id="home">
@@ -84,13 +89,13 @@
              
                 <!--#2 Referral-->
                 <div class="card">
-                    <img src="{% static 'Blog/imagenes/avatar-ali.png' %}" alt="profile_pic" class="img-profile" width= 150 height= 150>
+                    <img src="{% static 'Blog/imagenes/avatar-ali.png' %}" class="img-profile" width= 150 height= 150>
                     <div class="card-p">
                         <p class="title card-p-title">Guadalupe Lima</p>
                         <p class="p_gray card-p-p_gray">“Soy apasionada y activa. Una mujer con iniciativa y dedicación. Soy fuerza y esfuerzo. Soy pasión y ganas de hacer. Soy decidida y, definitivamente, amo lo que hago. ¿Y qué hago? ¡Lo que realmente quiero!”</p>
                     </div>
                 </div>
-                
+            </div>    
            
             
         </section>

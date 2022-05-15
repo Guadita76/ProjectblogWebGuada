@@ -1,0 +1,22 @@
+{% extends 'Blog/base.html' %}
+{% load static %}
+{% block content %}
+
+  
+
+
+<div class= "mains_profile">
+    {% if page_user.image %}
+    <img class= "profile" src= "{{ page_user.image.url }}">
+    {%else%}
+    <img class= 'profile' src= "{% static 'Blog/imagenes/defaul_avatar.jpg' %}">
+    {%endif%}
+    <h2 class= "username">@{{page_user.user.username}}</a></h2>
+    <h2>{{page_user.user.first_name}} {{page_user.user.last_name}}</h2>
+    <h2>{{page_user.user.email}}</h2>
+    <h2> <a href= "{{ page_user.link}} "> Website </h2></a>
+    <h2>{{page_user.bio}}</h2>
+  </div>
+  
+
+{% endblock %}

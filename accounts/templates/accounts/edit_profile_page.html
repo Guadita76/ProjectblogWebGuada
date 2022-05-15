@@ -1,27 +1,20 @@
 {% extends 'Blog/base.html' %}
-{% load crispy_forms_tags %}
+{% block title %} <h1><center>Create or Edit Profile!</center> </h1>{% endblock%}
+
+{% load crispy_forms_tags%}
 {% load static %}
-{% block title %} <h1><center>Edit Profile Page!</center> </h1>{% endblock%}
+
 {% block content %}
 
-
 {% if user.is_authenticated %}
-
-
-<br/>
 <div class= "mains"  >
-<br/>  
-     <form  method= 'POST' enctype= 'multipart/form-data'>  
-       {% csrf_token %}
-       {{form | crispy}}
-      <br/><br/>
-      <button type= "submit" id= "submit" > Update Profile Page</button>
-</div>    
-      
-{% else %}    
-
-You are not allowed here!
-      </form>      
+<form method= 'POST' enctype = 'multipart/form-data'> 
+    {% csrf_token %}
+    {{ form|crispy}}
+     <button type="submit" >UPDATE PROFILE</button>
+</form>   
 </div>
-{% endif %}
+{% else %}
+you are not allowed here! 
+{%endif%}
 {% endblock %}

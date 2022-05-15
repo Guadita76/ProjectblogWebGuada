@@ -12,11 +12,12 @@
 
 
 <div class= "mains"  >
-  <form class= "form"   method = 'POST'> {% csrf_token %}
-       
-       {{form|crispy}}
+  <form class= "form"   method = 'POST'> 
+    {% csrf_token %}
+    {{form|crispy}}
 
-    <button type= "submit" id= "submit" > REGISTRATE  </button>
+<br/><br/>
+    <button type= "submit" id= "submit" > SIGNUP  </button>
 
   </form>  
 

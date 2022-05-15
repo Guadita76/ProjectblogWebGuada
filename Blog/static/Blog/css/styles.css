@@ -572,16 +572,16 @@ a:hover {
   .Article__title {
     font-size: 1.75rem;
     line-height: 2.1rem;
-    color: var(--blacker600);
+    color: black;
     font-weight: normal;
     margin: 0 0 1.5rem;
   }
   .Article__paragraph {
     font-size: 0.9rem;
     line-height: 1.8rem;
-    color: var(--blacker500);
+    color: black;
     margin: 10;
-    text-align: justify;
+    text-align: center;
   }
   
 
@@ -592,7 +592,7 @@ a:hover {
     margin-right: 10px;
     margin-left: 30px;
     border-radius: 50%;
-    justify-content: space-around;
+    justify-content: center;
   }
   
   button#submit {
@@ -652,7 +652,7 @@ align-items: float right;
 
 
 }
-#article{
+.article{
 	width: 93%;
 	margin: auto;
 	padding: 40px 0;
@@ -664,10 +664,13 @@ align-items: float right;
     flex-direction: column;
     justify-content: space-around;
     background: rgb(88, 209, 88);
-	width: 70%;
+	width: 75%;
     margin: 5% auto;
     box-sizing: border-box;
+    padding-top: 30px;
 	padding-bottom: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
     text-align: center;
 }
 
@@ -675,7 +678,7 @@ align-items: float right;
     text-align: center;
     padding: 10px 20px;
     border-radius: 4px;
-    color: #fff;
+    color: rgb(20, 156, 54);
     font-size: 0.9rem;
   }
 
@@ -691,9 +694,58 @@ align-items: float right;
 
 .mains1{
 	background: rgb(111, 230, 111);
-	width: 60%;
-	margin: 5% auto;
+	width: 50%;
+	margin: 15% ;
 	border-radius: 4px;
 	padding-bottom: 30px;
-    text-align: justify
+    text-align: center;
+    justify-content: space-around;
 }
+
+.container_button{
+    
+        height: 68px;
+        width: 68px;
+        margin-right: 10px;
+        border-radius: 50%;
+
+}
+
+.container_button1{
+    
+    height: 80%;
+    width: 68px;
+    margin-left: 10px;
+    border-radius: 50%;
+
+}
+
+.mains_profile{
+	display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: rgb(88, 209, 88);
+	width: 40%;
+    margin: 5% auto;
+    box-sizing: border-box;
+	padding-bottom: 40px;
+    text-align: center;
+}
+
+.contenedor_box{
+
+    width: 70%;
+    margin: auto;
+}
+
+
+.box_comments{
+color: black;
+background: #7de979;
+font-size: 15px;
+padding-left: 10px;
+padding-top: 20px;
+padding-bottom: 20px;
+
+}
+

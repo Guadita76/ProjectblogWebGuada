@@ -1,10 +1,11 @@
 
-{% extends 'Blog/pages.html' %}
+{% extends 'Blog/base.html' %}
 {% block content %}
-{% load crispy_forms_tags %}
+{% load static %}
 
-      <article>
-       
+
+    <article>
+      <div class= "article">
         <div class= "mains" >
         <br>
         <h2 class= "Article__title"> {{object.title}}</h2>
@@ -19,67 +20,82 @@
           <hr>
           <br>
           <div class= "Article__content">
-          <h2 class= "username"><a href="{% url  'profile' post.user %}">@{{post.user.username}}</a></h2>
+          <h2 class= "username">@{{post.user.username}}</a></h2>
           <h2>Post by: {{object.user.first_name}}  {{object.user.last_name}}</h2>
           <i class="clock"></i>
           <time class= "Article__date" data-time= "#">{{object.timestamp }}</time>
          
+      </div>
         </article>
-<div>
-    <button><a class= "follow-button" href= "{% url 'pages' %}">  Back</a></button>
+
+    <button><a  id= "submit" href= "{% url 'pages' %}">  Back</a></button>
 </div>
-<br/>
-<hr> 
-<br/>
-<div class= "mains">
+
+<br/><br/>
+
+
+<!--PERFIL DE USUARIO DEL POST-->
+
+<div class= "mains_profile">
+  {% if post.user.profile.image %}
   <img class= "profile" src= "{{ post.user.profile.image.url }}">
-  <h2>@{{post.user.username}}</h2>
-  <h2>{{post.user.first_name}} {{user.last_name}}</h2>
+  {%else%}
+  <img class= 'profile' src= "{% static 'Blog/imagenes/defaul_avatar.jpg' %}">
+  {%endif%}
+  <h2 class= "username">@{{post.user.username}}
+  <h2>{{post.user.first_name}} {{post.user.last_name}}</h2>
   <h2>{{post.user.email}}</h2>
-  </h2> <a href= "{{ user.profile.link}} "> Website </h2></a>
+  <h2> <a href= "{{ post.user.profile.link}} "> Website </h2></a>
   <h2>{{post.user.profile.bio}}</h2>
 </div>
-<br/>
+
 
 
 <br/><br/>
 
-    <h1>Comments...</h1>
-    <br/>
-  {% if not post.comments.all %}
+<!--SECCION DE COMENTARIOS-->
 
-      No comments yet...<a href= "{% url 'add_comment' post.pk %}"> 
-        Add One</a>
-  
-  {% else %} 
-  <a href= "{% url 'add_comment' post.pk %}"> Add Comment</a>
-  <br/><br/>
-  <hr>
-      {% for comment in post.comments.all %}
-<hr>
+
+<h1><center>Comments...</center></h1>
+
 <br/>
-        <strong>
+
+{% if not post.comments.all %}
+
+      <h1><center>No comments yet...</h1></center>
+      
+      <button><a href= "{% url 'add_comment' post.pk %}"> Add One</a></button>
+  
+{% else %} 
+<div>
+<button><a href= "{% url 'add_comment' post.pk %}"> Add Comment</a></button>
+</div>
+<br/><br/>
+  
+{% for comment in post.comments.all %}
+<br/>
+        <div class = "container_box">
+          <div class= "box_comments">
            {{ comment.name}} - 
            {{comment.timestamp}}
-        </strong>
-        <br/>
-        {{comment.content}}
-        <br/><br/>
-        <hr>
-        <hr>
-      {% endfor%}
+        
+           <br/>
+           {{comment.content}}
+          </div>
+        </div>
+<br/><br/>
 
-      <br/>
-      <a href= "{% url 'add_comment' post.pk %}"> Add Comment</a>
-  {% endif %}
-  <br/>
+{% endfor%}
 
- 
-  
-  
+      <div>
+      <button><a href= "{% url 'add_comment' post.pk %}"> Add Comment</a></button>
+      </div>
+{% endif %}
+<br/>
 
-  
+
+
 {% endblock %}
- 
+
 
 

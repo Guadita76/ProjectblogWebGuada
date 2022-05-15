@@ -1,7 +1,7 @@
 {% extends 'Blog/base.html' %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% block title %} Edit Profile Page {% endblock %}
+{% block title %} <h1><center>Edit Profile Page!</center> </h1>{% endblock%}
 {% block content %}
 
 
@@ -14,6 +14,8 @@
      <form  method= 'POST' enctype= 'multipart/form-data'>  
        {% csrf_token %}
        {{form | crispy}}
+       {{profile_form | crispy}}
+      
       <br/><br/>
       <button type= "submit" id= "submit" > Update Profile Page</button>
 </div>    
@@ -25,5 +27,3 @@ You are not allowed here!
 </div>
 {% endif %}
 {% endblock %}
-
-
